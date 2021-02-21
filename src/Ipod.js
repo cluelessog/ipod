@@ -1,5 +1,6 @@
 import React from 'react';
 import Wheel from './Wheel';
+import Screen from './Screen';
 import ZingTouch from 'zingtouch';
 
 class Ipod extends React.Component{
@@ -23,6 +24,7 @@ class Ipod extends React.Component{
     render(){
         return (
          <div className="Ipod">
+             <Screen />
              <Wheel
              onHandleRotation = {this.handleRotation} />
          </div>
