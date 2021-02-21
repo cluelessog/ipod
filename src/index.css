@@ -70,8 +70,8 @@ code {
 /* screen css */
 .Screen{
   position: absolute;
-  top: 26%;
-  left: 38%;
+  top: 20%;
+  left: 7%;
   z-index: 2;
 }
 .screen-container{
