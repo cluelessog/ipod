@@ -11,3 +11,55 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* control wheel styling */
+.container{
+  position: relative;
+  background-color: #dfdfd7;
+  height: 200px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 20%;
+}
+.outer-circle{
+  height: 180px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inner-circle{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: #dfdfd7;
+  margin: auto;
+}
+.next-btn{
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  right: 35px;
+}
+.prev-btn{
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  left: 35px;
+}
+.play-pause-btn{
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  bottom: 15px;
+}
+.menu-btn{
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  top: 15px;
+}
