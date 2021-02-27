@@ -6,6 +6,14 @@ import ZingTouch from 'zingtouch';
 class Ipod extends React.Component{
     constructor(){
         super();
+        this.state = {
+            menu: false,
+            submenu: false,
+            songs: false,
+            albums: false,
+            games: false,
+            settings: false
+        }
     }
     //wheel ka rotation control
     //menu click
@@ -19,6 +27,10 @@ class Ipod extends React.Component{
             //angle range in positive and negative 0 se 30 pe aghe and 0 se -30 pe peche jaega menu item selection
             console.log("angle : " + angle + "\n");
 
+            // select different items based on angle
+            if((angle > 0 && angle <= 30)||(angle <= 0 && angle > -30)){
+                console.log("Song selected");
+            }
         })
     }
     render(){
