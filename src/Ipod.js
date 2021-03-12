@@ -10,147 +10,220 @@ class Ipod extends React.Component{
         this.state = {
             menu: true,
             submenu: false,
-            songs: false,
+            songs: true,
             albums: false,
             games: false,
             settings: false,
-            favourite: false,
+            favourite: true,
             artist: false,
             bands: false
         }
     }
 
-    //wheel rotation control
-    handleRotation = (props) => {
-        const wheel = document.getElementById('scroll-wheel');
-        const zt = new ZingTouch.Region(wheel);
-
-        // menu items
+    selectSongs(){
         const songs = $("#Songs");
         const albums = $("#Albums");
         const games = $("#Games");
         const settings = $("#Settings");
+        console.log("Song selected");
+        // console.log($("#Songs"));
+        songs.addClass("active-item");
+        albums.removeClass("active-item");
+        games.removeClass("active-item");
+        settings.removeClass("active-item");
+        this.setState({
+            songs: true,
+            albums: false,
+            games: false,
+            settings: false,
+            submenu: false,
+        });
+    }
 
-        // submenu items
+    selectSettings(){
+        const songs = $("#Songs");
+        const albums = $("#Albums");
+        const games = $("#Games");
+        const settings = $("#Settings");
+        console.log("Settings Selected");
+        songs.removeClass("active-item");
+        albums.removeClass("active-item");
+        games.removeClass("active-item");
+        settings.addClass("active-item");
+        this.setState({
+            songs: false,
+            albums: false,
+            games: false,
+            settings: true,
+            submenu: false,
+        });
+    }
+
+    selectGames(){
+        const songs = $("#Songs");
+        const albums = $("#Albums");
+        const games = $("#Games");
+        const settings = $("#Settings");
+        console.log("Games Selected");
+        songs.removeClass("active-item");
+        albums.removeClass("active-item");
+        games.addClass("active-item");
+        settings.removeClass("active-item");
+        this.setState({
+            songs: false,
+            albums: false,
+            games: true,
+            settings: false,
+            submenu: false,
+        });
+    }
+    
+    selectAlbums(){
+        const songs = $("#Songs");
+        const albums = $("#Albums");
+        const games = $("#Games");
+        const settings = $("#Settings");
+        console.log("Album Selected");
+        songs.removeClass("active-item");
+        albums.addClass("active-item");
+        games.removeClass("active-item");
+        settings.removeClass("active-item");
+        this.setState({
+            songs: false,
+            albums: true,
+            games: false,
+            settings: false,
+            submenu: false,
+        });
+    }
+
+    selectFavourite(){
+
+        console.log("favourite selected");
+        // console.log($("#Favourite"));
         const favourite = $("#Favourite");
         const artist = $("#Artist");
         const bands = $("#Bands");
+        favourite.addClass("active-item");
+        artist.removeClass("active-item");
+        bands.removeClass("active-item");
+        this.setState({
+            favourite: true,
+            artist: false,
+            bands: false
+        });
+    }
+
+    selectBands(){
+        const favourite = $("#Favourite");
+        const artist = $("#Artist");
+        const bands = $("#Bands");
+        console.log("Bands Selected");
+        favourite.removeClass("active-item");
+        artist.removeClass("active-item");
+        bands.addClass("active-item");
+        this.setState({
+            favourite: false,
+            artist: false,
+            bands: true
+        });
+    }
+
+    selectArtist(){
+        const favourite = $("#Favourite");
+        const artist = $("#Artist");
+        const bands = $("#Bands");
+        console.log("Artist Selected");
+        favourite.removeClass("active-item");
+        artist.addClass("active-item");
+        bands.removeClass("active-item");
+        this.setState({
+            favourite: false,
+            artist: true,
+            bands: false
+        });
+    }
+    //wheel rotation control
+    handleRotation = (props) => {
+        const wheel = document.getElementById('scroll-wheel');
+        const zt = new ZingTouch.Region(wheel);
+        let angleMoved = 0;
         let angle = 0;
         
         zt.bind(wheel, 'rotate', (e) => {
-            angle += e.detail.distanceFromLast;
-
-             console.log("angle : " + angle + "\n");
-            // console.log("menu : " + this.state.menu + "\n");
-            // console.log("submenu : " + this.state.submenu + "\n");
-            // select different items based on angle
-            
-            // handle menu item selection
-            // Song selection
-            if(((angle > 0 && angle <= 30)||(angle <= 0 && angle > -30)) && (this.state.menu && !this.state.submenu)){
-                // console.log("Song selected");
-                // console.log($("#Songs"));
-
-                songs.addClass("active-item");
-                albums.removeClass("active-item");
-                games.removeClass("active-item");
-                settings.removeClass("active-item");
-                this.setState({
-                    songs: true,
-                    albums: false,
-                    games: false,
-                    settings: false,
-                    submenu: false,
-                });
-
-            }
-            // Album Selection
-            else if(((angle > 30 && angle <= 60)||(angle <= -30 && angle > -60)) && (this.state.menu && !this.state.submenu)){
-                // console.log("Album Selected");
-                songs.removeClass("active-item");
-                albums.addClass("active-item");
-                games.removeClass("active-item");
-                settings.removeClass("active-item");
-                this.setState({
-                    songs: false,
-                    albums: true,
-                    games: false,
-                    settings: false,
-                    submenu: false,
-                });
-            }
-            //Games Selection
-            else if(((angle > 60 && angle <= 90)||(angle <= -60 && angle > -90)) && (this.state.menu && !this.state.submenu)){
-                // console.log("Games Selected");
-                songs.removeClass("active-item");
-                albums.removeClass("active-item");
-                games.addClass("active-item");
-                settings.removeClass("active-item");
-                this.setState({
-                    songs: false,
-                    albums: false,
-                    games: true,
-                    settings: false,
-                    submenu: false,
-                });
-            }
-            //Settings Selection
-            else if(((angle > 90 && angle <= 120)||(angle <= -90 && angle > -120)) && (this.state.menu && !this.state.submenu)){
-                // console.log("Settings Selected");
-                songs.removeClass("active-item");
-                albums.removeClass("active-item");
-                games.removeClass("active-item");
-                settings.addClass("active-item");
-                this.setState({
-                    songs: false,
-                    albums: false,
-                    games: false,
-                    settings: true,
-                    submenu: false,
-                });
-            }
-
-            // handle submenu item selection   
+            angle = e.detail.distanceFromLast;
             // console.log("angle : " + angle + "\n");
-            // favourite selection
-            if(((angle > 0 && angle <= 30)||(angle <= 0 && angle > -30)) && (this.state.submenu)){
-                // console.log("favourite selected");
-                // console.log($("#Favourite"));
-                // console.log("fav : " + this.state.submenu + "\n");
-                favourite.addClass("active-item");
-                artist.removeClass("active-item");
-                bands.removeClass("active-item");
-                this.setState({
-                    favourite: true,
-                    artist: false,
-                    bands: false
-                });
+            // select different items based on angle moved
+            // handle menu and submenu item selection
+            //if angle moved is negative
+            if(angle > 0){
+                angleMoved++;
+                console.log("angleMoved : " + angleMoved + "\n");
+                if(angleMoved === 30){
+                    angleMoved = 0;
+                    //menu
+                    if(this.state.menu && !this.state.submenu){
+                        if(this.state.songs){
+                            this.selectAlbums();
+                        }
+                        else if(this.state.albums){
+                            this.selectGames();
+                        }
+                        else if(this.state.games){
+                            this.selectSettings();
+                        }
+                        else if(this.state.settings){
+                            this.selectSongs();
+                        }
+                    }
+                    //submenu
+                    else if(this.state.submenu && !this.state.menu){
+                        if(this.state.favourite){
+                            this.selectArtist();
+                        }
+                        else if(this.state.artist){
+                            this.selectBands();
+                        }
+                        else if(this.state.bands){
+                            this.selectFavourite();
+                        }
+                    }
+                }
             }
-            // Artist Selection
-            else if(((angle > 30 && angle <= 60)||(angle <= -30 && angle > -60)) && (this.state.submenu)){
-                // console.log("Artist Selected");
-                // console.log("artist : " + this.state.submenu + "\n");
-                favourite.removeClass("active-item");
-                artist.addClass("active-item");
-                bands.removeClass("active-item");
-                this.setState({
-                    favourite: false,
-                    artist: true,
-                    bands: false
-                });
-            }
-            //Bands Selection
-            else if(((angle > 60 && angle <= 90)||(angle <= -60 && angle > -90)) && (this.state.submenu)){
-                // console.log("Bands Selected");
-                // console.log("band : " + this.state.submenu + "\n");
-                favourite.removeClass("active-item");
-                artist.removeClass("active-item");
-                bands.addClass("active-item");
-                this.setState({
-                    favourite: false,
-                    artist: false,
-                    bands: true
-                });
+            //angle moved is negative
+            else{
+                angleMoved++;
+                console.log("angleMoved : " + angleMoved + "\n");
+                if(angleMoved === 30){
+                    angleMoved = 0;
+                    //menu
+                    if(this.state.menu && !this.state.submenu){
+                        if(this.state.songs){
+                            this.selectSettings();
+                        }
+                        else if(this.state.albums){
+                            this.selectSongs();
+                        }
+                        else if(this.state.games){
+                            this.selectAlbums()
+                        }
+                        else if(this.state.settings){
+                            this.selectGames();
+                        }
+                    }
+                    //submenu
+                    else if(this.state.submenu && !this.state.menu){
+                        if(this.state.favourite){
+                            this.selectBands();
+                        }
+                        else if(this.state.artist){
+                            this.selectFavourite();
+                        }
+                        else if(this.state.bands){
+                            this.selectArtist();
+                        }
+                    }
+                }
             }
 
         });
