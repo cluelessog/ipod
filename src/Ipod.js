@@ -313,9 +313,6 @@ class Ipod extends React.Component{
                 submenu: submenu
             });
         }
-        // console.log("after");
-        // console.log("menu : " + menu + "\n");
-        // console.log("submenu : " + submenu + "\n");
     }
     render(){
         const {menu, submenu} = this.state;

@@ -4,12 +4,22 @@ const Screen = (props) => {
     return(
         <div className="Screen">
             <div className = "screen-container">
-                {/* TODO: Add navbar component here, shows time and battery */}
+                {
+                    (!menu && !submenu) ? 
+                    <div className = "titleBar">
+                        <span className = "menu-heading">iPod</span>
+                        <img className="battery" src="https://image.flaticon.com/icons/svg/3103/3103446.svg"></img>
+                    </div>
+                    : null
+                }
+                {/* menu to be enabled based on conditions */}
                 {
                     menu ? 
                     <div className = "menu-container">
-                        {/* add list items here, main menu to be enabled based on conditions */}
-                        <span className = "menu-heading">Menu</span>
+                        <div className = "titleBar">
+                            <span className = "menu-heading">Home</span>
+                            <img className="battery" src="https://image.flaticon.com/icons/svg/3103/3103446.svg"></img>
+                        </div>
                         <ul className = "menu-list">
                             <li key="Songs" id="Songs" className = "active-item">Songs</li>
                             <li key="Albums" id="Albums" className = "">Albums</li>
@@ -20,12 +30,14 @@ const Screen = (props) => {
                     : null
                 }
                 
-                {/* add sub menu list items here, sub menu to be enabled based on conditions */}
+                {/* sub menu to be enabled based on conditions */}
                 {
                     (!menu && submenu) ? 
                     <div className = "menu-container">
-                        {/* add list items here, main menu to be enabled based on conditions */}
-                        <span className = "menu-heading">Songs</span>
+                        <div className = "titleBar">
+                            <span className = "menu-heading">Songs</span>
+                            <img className="battery" src="https://image.flaticon.com/icons/svg/3103/3103446.svg"></img>
+                        </div>
                         <ul className = "menu-list">
                             <li key="Favourite" id="Favourite" className = "active-item">Favourite</li>
                             <li key="Artist" id="Artist" className = "">Artist</li>
