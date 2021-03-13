@@ -82,6 +82,10 @@ code {
   width: 260px;
   overflow: hidden;
   border : 2px solid black;
+  background-image: url(https://c4.wallpaperflare.com/wallpaper/738/62/544/naruto-chidori-naruto-naruto-uzumaki-rasengan-naruto-sasuke-uchiha-hd-wallpaper-preview.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   border-radius: 2%;
   background-color: white;
 }

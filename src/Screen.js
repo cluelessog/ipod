@@ -6,7 +6,7 @@ const Screen = (props) => {
             <div className = "screen-container">
                 {
                     (!menu && !submenu) ? 
-                    <div className = "titleBar">
+                    <div className = "titleBar" style={{backgroundColor: 'white'}}>
                         <span className = "menu-heading">iPod</span>
                         <img className="battery" src="https://image.flaticon.com/icons/svg/3103/3103446.svg"></img>
                     </div>

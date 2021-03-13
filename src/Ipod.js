@@ -173,7 +173,8 @@ class Ipod extends React.Component{
                             this.selectSettings();
                         }
                         else if(this.state.settings){
-                            this.selectSongs();
+                            // this.selectSongs();
+                            // stop here
                         }
                     }
                     //submenu
@@ -185,7 +186,8 @@ class Ipod extends React.Component{
                             this.selectBands();
                         }
                         else if(this.state.bands){
-                            this.selectFavourite();
+                            // this.selectFavourite();
+                            // stop here
                         }
                     }
                 }
@@ -199,7 +201,8 @@ class Ipod extends React.Component{
                     //menu
                     if(this.state.menu && !this.state.submenu){
                         if(this.state.songs){
-                            this.selectSettings();
+                            // this.selectSettings();
+                            // stop here
                         }
                         else if(this.state.albums){
                             this.selectSongs();
@@ -294,7 +297,7 @@ class Ipod extends React.Component{
     // handle Menu button click, takes back to previous screen
     handleMenuButtonClick = (props) => {
         console.log("Menu Button clicked");
-        const {menu, submenu} = this.state;
+        const {menu, submenu, songs, favourite, artist, bands} = this.state;
         // console.log("menu : " + menu + "\n");
         // console.log("submenu : " + submenu + "\n");
         if(menu){
@@ -308,10 +311,29 @@ class Ipod extends React.Component{
         }
         else if(!menu && !submenu)
         {
-            this.setState({
-                menu: !menu,
-                submenu: submenu
-            });
+            if(songs){
+                
+                if(favourite){
+                    this.selectFavourite();
+                }
+                else if(artist){
+                    this.selectArtist();
+                }
+                else if(bands){
+                    this.selectBands();
+                }
+
+                this.setState({
+                    menu: menu,
+                    submenu: !submenu
+                });
+            }
+            else{
+                this.setState({
+                    menu: !menu,
+                    submenu: submenu
+                });
+            }
         }
     }
     render(){
