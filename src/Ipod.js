@@ -16,21 +16,14 @@ class Ipod extends React.Component{
             settings: false,
             favourite: true,
             artist: false,
-            bands: false
+            bands: false,
+            active: ''
         }
     }
 
     selectSongs(){
-        const songs = $("#Songs");
-        const albums = $("#Albums");
-        const games = $("#Games");
-        const settings = $("#Settings");
         console.log("Song selected");
         // console.log($("#Songs"));
-        songs.addClass("active-item");
-        albums.removeClass("active-item");
-        games.removeClass("active-item");
-        settings.removeClass("active-item");
         this.setState({
             songs: true,
             albums: false,
@@ -41,15 +34,7 @@ class Ipod extends React.Component{
     }
 
     selectSettings(){
-        const songs = $("#Songs");
-        const albums = $("#Albums");
-        const games = $("#Games");
-        const settings = $("#Settings");
         console.log("Settings Selected");
-        songs.removeClass("active-item");
-        albums.removeClass("active-item");
-        games.removeClass("active-item");
-        settings.addClass("active-item");
         this.setState({
             songs: false,
             albums: false,
@@ -60,15 +45,7 @@ class Ipod extends React.Component{
     }
 
     selectGames(){
-        const songs = $("#Songs");
-        const albums = $("#Albums");
-        const games = $("#Games");
-        const settings = $("#Settings");
         console.log("Games Selected");
-        songs.removeClass("active-item");
-        albums.removeClass("active-item");
-        games.addClass("active-item");
-        settings.removeClass("active-item");
         this.setState({
             songs: false,
             albums: false,
@@ -79,15 +56,7 @@ class Ipod extends React.Component{
     }
     
     selectAlbums(){
-        const songs = $("#Songs");
-        const albums = $("#Albums");
-        const games = $("#Games");
-        const settings = $("#Settings");
         console.log("Album Selected");
-        songs.removeClass("active-item");
-        albums.addClass("active-item");
-        games.removeClass("active-item");
-        settings.removeClass("active-item");
         this.setState({
             songs: false,
             albums: true,
@@ -98,15 +67,7 @@ class Ipod extends React.Component{
     }
 
     selectFavourite(){
-
         console.log("favourite selected");
-        // console.log($("#Favourite"));
-        const favourite = $("#Favourite");
-        const artist = $("#Artist");
-        const bands = $("#Bands");
-        favourite.addClass("active-item");
-        artist.removeClass("active-item");
-        bands.removeClass("active-item");
         this.setState({
             favourite: true,
             artist: false,
@@ -115,13 +76,7 @@ class Ipod extends React.Component{
     }
 
     selectBands(){
-        const favourite = $("#Favourite");
-        const artist = $("#Artist");
-        const bands = $("#Bands");
         console.log("Bands Selected");
-        favourite.removeClass("active-item");
-        artist.removeClass("active-item");
-        bands.addClass("active-item");
         this.setState({
             favourite: false,
             artist: false,
@@ -130,13 +85,7 @@ class Ipod extends React.Component{
     }
 
     selectArtist(){
-        const favourite = $("#Favourite");
-        const artist = $("#Artist");
-        const bands = $("#Bands");
         console.log("Artist Selected");
-        favourite.removeClass("active-item");
-        artist.addClass("active-item");
-        bands.removeClass("active-item");
         this.setState({
             favourite: false,
             artist: true,
@@ -152,7 +101,7 @@ class Ipod extends React.Component{
         
         zt.bind(wheel, 'rotate', (e) => {
             angle = e.detail.distanceFromLast;
-            // console.log("angle : " + angle + "\n");
+            console.log("angle : " + angle + "\n");
             // select different items based on angle moved
             // handle menu and submenu item selection
             //if angle moved is negative
@@ -244,28 +193,34 @@ class Ipod extends React.Component{
                 // change background
                 this.setState({
                     menu: !menu,
-                    submenu: !submenu
+                    submenu: !submenu,
+                    active: 'songs'
                 });
             }
             else if(albums){
-                // change background
+                let imageUrl = "https://media.giphy.com/media/ThuxekMi9kcAU4euK3/giphy.gif";
+                $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
+                $('.screen-container').css('background-size', '264px 170px');
                 this.setState({
                     menu: false,
-                    submenu: false
+                    submenu: false,
+                    active: 'albums'
                 });
             }
             else if(games){
-                // change background
+                let imageUrl = "https://media.giphy.com/media/S7nF0HAVEBxUu76pxR/giphy.gif";
+                $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
                 this.setState({
                     menu: false,
-                    submenu: false
+                    submenu: false,
+                    active: 'games'
                 });
             }
             else if(settings){
-                // change background
                 this.setState({
                     menu: false,
-                    submenu: false
+                    submenu: false,
+                    active: 'settings'
                 });
             }
         }
@@ -275,21 +230,24 @@ class Ipod extends React.Component{
                 // change background
                 this.setState({
                     menu: false,
-                    submenu: false
+                    submenu: false,
+                    active: 'favourite'
                 });
             }
             else if(artist){
                 // change background
                 this.setState({
                     menu: false,
-                    submenu: false
+                    submenu: false,
+                    active: 'artist'
                 });
             }
             else if(bands){
                 // change background
                 this.setState({
                     menu: false,
-                    submenu: false
+                    submenu: false,
+                    active: 'bands'
                 });
             }
         }
@@ -297,7 +255,7 @@ class Ipod extends React.Component{
     // handle Menu button click, takes back to previous screen
     handleMenuButtonClick = (props) => {
         console.log("Menu Button clicked");
-        const {menu, submenu, songs, favourite, artist, bands} = this.state;
+        const {menu, submenu, songs, albums, games, settings, favourite, artist, bands} = this.state;
         // console.log("menu : " + menu + "\n");
         // console.log("submenu : " + submenu + "\n");
         if(menu){
@@ -312,36 +270,28 @@ class Ipod extends React.Component{
         else if(!menu && !submenu)
         {
             if(songs){
-                
-                if(favourite){
-                    this.selectFavourite();
-                }
-                else if(artist){
-                    this.selectArtist();
-                }
-                else if(bands){
-                    this.selectBands();
-                }
-
                 this.setState({
                     menu: menu,
-                    submenu: !submenu
+                    submenu: !submenu,
+                    active: 'songs'
                 });
             }
             else{
                 this.setState({
                     menu: !menu,
-                    submenu: submenu
+                    submenu: submenu,
+                    active: ''
                 });
+                let imageUrl = "https://c4.wallpaperflare.com/wallpaper/738/62/544/naruto-chidori-naruto-naruto-uzumaki-rasengan-naruto-sasuke-uchiha-hd-wallpaper-preview.jpg";
+                $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
             }
         }
     }
     render(){
-        const {menu, submenu} = this.state;
         return (
          <div className="Ipod">
              <div className="container">
-                <Screen menu={menu} submenu = {submenu}/>
+                <Screen states = {this.state}/>
                 <Wheel
                 onHandleRotation = {this.handleRotation}
                 onCentreButtonClick = {this.handleCentreButtonClick}

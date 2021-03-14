@@ -138,3 +138,22 @@ code {
   height: 20px;
   padding-right: 2%;
 }
+
+/* setting screen css */
+.setting-screen{
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.react-logo{
+  height: 90px;
+  width: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.heart{
+  color: #e25555;
+}

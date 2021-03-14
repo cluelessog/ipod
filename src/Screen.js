@@ -1,13 +1,13 @@
 import React from 'react';
 const Screen = (props) => {
-    const {menu, submenu} = props;
+    const {menu, submenu, songs, albums, games, settings, favourite, artist, bands, active} = props.states;
     return(
         <div className="Screen">
             <div className = "screen-container">
                 {
                     (!menu && !submenu) ? 
                     <div className = "titleBar" style={{backgroundColor: 'white'}}>
-                        <span className = "menu-heading">iPod</span>
+                        <span className = "menu-heading">iPod.js</span>
                         <img className="battery" src="https://image.flaticon.com/icons/svg/3103/3103446.svg"></img>
                     </div>
                     : null
@@ -21,10 +21,10 @@ const Screen = (props) => {
                             <img className="battery" src="https://image.flaticon.com/icons/svg/3103/3103446.svg"></img>
                         </div>
                         <ul className = "menu-list">
-                            <li key="Songs" id="Songs" className = "active-item">Songs</li>
-                            <li key="Albums" id="Albums" className = "">Albums</li>
-                            <li key="Games" id="Games" className = "">Games</li>
-                            <li key="Settings" id="Settings" className = "">Settings</li>
+                            <li key="Songs" id="Songs" className = {songs ? "active-item": ""}>Songs</li>
+                            <li key="Albums" id="Albums" className = {albums ? "active-item": ""}>Albums</li>
+                            <li key="Games" id="Games" className = {games ? "active-item": ""}>Games</li>
+                            <li key="Settings" id="Settings" className = {settings ? "active-item": ""}>Settings</li>
                         </ul>
                     </div>
                     : null
@@ -39,11 +39,23 @@ const Screen = (props) => {
                             <img className="battery" src="https://image.flaticon.com/icons/svg/3103/3103446.svg"></img>
                         </div>
                         <ul className = "menu-list">
-                            <li key="Favourite" id="Favourite" className = "active-item">Favourite</li>
-                            <li key="Artist" id="Artist" className = "">Artist</li>
-                            <li key="Bands" id="Bands" className = "">Bands</li>
+                            <li key="Favourite" id="Favourite" className = {favourite ? "active-item": ""}>Favourite</li>
+                            <li key="Artist" id="Artist" className = {artist ? "active-item": ""}>Artist</li>
+                            <li key="Bands" id="Bands" className = {bands ? "active-item": ""}>Bands</li>
                         </ul>
                     </div>
+                    : null
+                }
+
+                {
+                    (active === 'settings') ?
+
+                    <div className = "setting-screen">
+                        iPod.js
+                        <img className = "react-logo" src="logo512.png" />
+                        Made with <span className="heart">❤</span> by Sourabh
+                    </div>
+
                     : null
                 }
             </div>
