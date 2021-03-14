@@ -62,7 +62,7 @@ const Screen = (props) => {
 
                 {
                     (active === "favourite") ?
-                        <Music audio = {audio}/>
+                        <Music audio = {audio} changePlayState = {props.onMusicPlay}/>
                     : null
                 }
             </div>

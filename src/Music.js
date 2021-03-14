@@ -14,6 +14,7 @@ class Music extends React.Component{
         let self = this;
         let track = self.props.audio;
         track.play();
+        self.props.changePlayState();
         track.addEventListener("timeupdate",function(){
             if(self.state.mounted){
                 const currentTime = track.currentTime;

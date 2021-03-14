@@ -17,7 +17,9 @@ class Ipod extends React.Component{
             favourite: true,
             artist: false,
             bands: false,
-            active: ''
+            active: '',
+            play: false,
+            favouriteAccessedOnce: false
         }
     }
 
@@ -99,6 +101,15 @@ class Ipod extends React.Component{
             bands: false
         });
     }
+
+    changePlayState = (props) =>{
+        console.log("music played");
+        this.setState({
+            play: true,
+            favouriteAccessedOnce: true
+        });
+    }
+
     //wheel rotation control
     handleRotation = (props) => {
         const wheel = document.getElementById('scroll-wheel');
@@ -290,6 +301,22 @@ class Ipod extends React.Component{
             }
         }
     }
+
+    handlePlayPauseClick = (props) =>{
+        // toggle song play and pause
+        const {play, favouriteAccessedOnce} = this.state;
+        if(play && favouriteAccessedOnce){
+            this.state.audio.pause();
+            this.setState({
+                play : false
+            });
+        }else if(favouriteAccessedOnce){
+            this.state.audio.play();
+            this.setState({
+                play : true
+            });
+        }
+    }
     render(){
         return (
          <div className="Ipod">
@@ -297,11 +324,12 @@ class Ipod extends React.Component{
                 <source src="Despacito.mp3"></source>
             </audio>
              <div className="container">
-                <Screen states = {this.state}/>
+                <Screen states = {this.state} onMusicPlay = {this.changePlayState}/>
                 <Wheel
                 onHandleRotation = {this.handleRotation}
                 onCentreButtonClick = {this.handleCentreButtonClick}
-                onMenuButtonClick = {this.handleMenuButtonClick} />
+                onMenuButtonClick = {this.handleMenuButtonClick} 
+                onPlayPauseClick = {this.handlePlayPauseClick}/>
              </div>
          </div>
         );
