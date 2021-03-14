@@ -190,7 +190,8 @@ class Ipod extends React.Component{
         // if we are on the main menu
         if(menu){
             if(songs){
-                // change background
+                let imageUrl = "https://c4.wallpaperflare.com/wallpaper/807/970/560/psychedelic-abstract-colorful-wolf-headphones-hd-wallpaper-preview.jpg";
+                $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
                 this.setState({
                     menu: !menu,
                     submenu: !submenu,
@@ -243,7 +244,8 @@ class Ipod extends React.Component{
                 });
             }
             else if(bands){
-                // change background
+                let imageUrl = "https://flypaper.soundfly.com/wp-content/uploads/2016/10/metal-covers-header.png";
+                $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
                 this.setState({
                     menu: false,
                     submenu: false,
@@ -264,8 +266,13 @@ class Ipod extends React.Component{
         else if(submenu && !menu){
             this.setState({
                 menu: !menu,
-                submenu: !submenu
+                submenu: !submenu,
+                favourite: true,
+                artist: false,
+                bands: false
             });
+            let imageUrl = "https://c4.wallpaperflare.com/wallpaper/738/62/544/naruto-chidori-naruto-naruto-uzumaki-rasengan-naruto-sasuke-uchiha-hd-wallpaper-preview.jpg";
+            $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
         }
         else if(!menu && !submenu)
         {
@@ -275,6 +282,8 @@ class Ipod extends React.Component{
                     submenu: !submenu,
                     active: 'songs'
                 });
+                let imageUrl = "https://c4.wallpaperflare.com/wallpaper/807/970/560/psychedelic-abstract-colorful-wolf-headphones-hd-wallpaper-preview.jpg";
+                $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
             }
             else{
                 this.setState({
