@@ -1,6 +1,7 @@
 import React from 'react';
+import Music from './Music';
 const Screen = (props) => {
-    const {menu, submenu, songs, albums, games, settings, favourite, artist, bands, active} = props.states;
+    const {menu, submenu, songs, albums, games, settings, favourite, artist, bands, active, audio} = props.states;
     return(
         <div className="Screen">
             <div className = "screen-container">
@@ -56,6 +57,12 @@ const Screen = (props) => {
                         Made with <span className="heart">❤</span> by Sourabh
                     </div>
 
+                    : null
+                }
+
+                {
+                    (active === "favourite") ?
+                        <Music audio = {audio}/>
                     : null
                 }
             </div>

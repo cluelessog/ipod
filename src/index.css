@@ -157,3 +157,64 @@ code {
 .heart{
   color: #e25555;
 }
+
+/* music track css */
+.playing-track-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.track-info{
+  height : 53%;
+  width : 100%;
+  display : flex;
+  flex-direction : row;
+  justify-content : space-evenly;
+  margin-bottom: 0;
+}
+.artist-info{
+  align-self: center;
+}
+.artist-image{
+  height: 60%;
+  width: 30%;
+  align-self: center;
+}
+.track-progress-bar{
+  width : 100%;
+  height : 30%;
+  display : flex;
+  flex-direction : row;
+  flex-wrap : wrap;
+  justify-content: space-evenly;
+}
+
+.seek-bar{
+  width: 70%;
+  height: 20%;
+  border : 1px solid grey;
+  cursor: pointer;
+  align-self: center;
+  display: flex;
+}
+
+.fill{
+  height: 100%;
+  background-color: #41924B;
+}
+
+.current-point{
+  margin : 0;
+  align-self : center;
+}
+
+total-duration{
+  margin : 0;
+  align-self: center;
+}
+
+.track-info p, h4{
+  margin: 0;
+}

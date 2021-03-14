@@ -21,6 +21,14 @@ class Ipod extends React.Component{
         }
     }
 
+    componentDidMount(){
+        const audioEl = document.getElementsByClassName("audio-element")[0];
+        console.log(audioEl);
+        this.setState({
+            audio : audioEl,
+        });
+        // audioEl.play();
+    }
     selectSongs(){
         console.log("Song selected");
         // console.log($("#Songs"));
@@ -54,7 +62,6 @@ class Ipod extends React.Component{
             submenu: false,
         });
     }
-    
     selectAlbums(){
         console.log("Album Selected");
         this.setState({
@@ -121,10 +128,6 @@ class Ipod extends React.Component{
                         else if(this.state.games){
                             this.selectSettings();
                         }
-                        else if(this.state.settings){
-                            // this.selectSongs();
-                            // stop here
-                        }
                     }
                     //submenu
                     else if(this.state.submenu && !this.state.menu){
@@ -133,10 +136,6 @@ class Ipod extends React.Component{
                         }
                         else if(this.state.artist){
                             this.selectBands();
-                        }
-                        else if(this.state.bands){
-                            // this.selectFavourite();
-                            // stop here
                         }
                     }
                 }
@@ -149,11 +148,8 @@ class Ipod extends React.Component{
                     angleMoved = 0;
                     //menu
                     if(this.state.menu && !this.state.submenu){
-                        if(this.state.songs){
-                            // this.selectSettings();
-                            // stop here
-                        }
-                        else if(this.state.albums){
+
+                        if(this.state.albums){
                             this.selectSongs();
                         }
                         else if(this.state.games){
@@ -165,10 +161,7 @@ class Ipod extends React.Component{
                     }
                     //submenu
                     else if(this.state.submenu && !this.state.menu){
-                        if(this.state.favourite){
-                            this.selectBands();
-                        }
-                        else if(this.state.artist){
+                        if(this.state.artist){
                             this.selectFavourite();
                         }
                         else if(this.state.bands){
@@ -228,7 +221,6 @@ class Ipod extends React.Component{
 
         if(submenu){
             if(favourite){
-                // change background
                 this.setState({
                     menu: false,
                     submenu: false,
@@ -236,7 +228,9 @@ class Ipod extends React.Component{
                 });
             }
             else if(artist){
-                // change background
+                let imageUrl = "https://static.wikia.nocookie.net/taylor-swift/images/3/3f/The_Weeknd_1.jpg/revision/latest?cb=20190330062206";
+                $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
+                $('.screen-container').css('background-position', 'relative');
                 this.setState({
                     menu: false,
                     submenu: false,
@@ -299,6 +293,9 @@ class Ipod extends React.Component{
     render(){
         return (
          <div className="Ipod">
+            <audio className="audio-element">
+                <source src="Despacito.mp3"></source>
+            </audio>
              <div className="container">
                 <Screen states = {this.state}/>
                 <Wheel
