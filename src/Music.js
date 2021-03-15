@@ -9,7 +9,7 @@ class Music extends React.Component{
             mounted : true
         }
     }
-   
+    // once mounted, play the song and change playstate, also update the time for amount of song played
     componentDidMount(){
         let self = this;
         let track = self.props.audio;
@@ -28,7 +28,7 @@ class Music extends React.Component{
         })
         
     }
-
+    // return time in a presentable format i.e 00:00
     computeDuration(track,isCurrentTime){
         var seconds;
         if(isCurrentTime){
@@ -43,7 +43,7 @@ class Music extends React.Component{
         time = time + duration.minutes() + ":" + duration.seconds();
         return time;
     }
-
+    
     componentWillUnmount(){
         this.state.mounted = false;
     }

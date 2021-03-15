@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Wheel = (props) => {
+    // display wheel content and take care of various click events
     return(
         <div className="outer-circle" id="scroll-wheel" onClick={props.onHandleRotation}>
             <img id="menu-btn" className="menu-btn" src="menu.svg" alt="menu-btn" onClick={props.onMenuButtonClick} />

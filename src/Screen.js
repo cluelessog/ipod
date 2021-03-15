@@ -49,6 +49,7 @@ const Screen = (props) => {
                 }
 
                 {
+                    // display settings page content
                     (active === 'settings') ?
 
                     <div className = "setting-screen">
@@ -61,6 +62,7 @@ const Screen = (props) => {
                 }
 
                 {
+                    // show music page and play music
                     (active === "favourite") ?
                         <Music audio = {audio} changePlayState = {props.onMusicPlay}/>
                     : null

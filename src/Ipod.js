@@ -23,6 +23,7 @@ class Ipod extends React.Component{
         }
     }
 
+    // get audio element once the component mounts
     componentDidMount(){
         const audioEl = document.getElementsByClassName("audio-element")[0];
         console.log(audioEl);
@@ -31,6 +32,8 @@ class Ipod extends React.Component{
         });
         // audioEl.play();
     }
+    
+    // toggle various state variables based on what is selected
     selectSongs(){
         console.log("Song selected");
         // console.log($("#Songs"));
@@ -102,6 +105,7 @@ class Ipod extends React.Component{
         });
     }
 
+    // change play state to true once we run our song from "favourite" page in submenu
     changePlayState = (props) =>{
         console.log("music played");
         this.setState({
@@ -122,7 +126,7 @@ class Ipod extends React.Component{
             console.log("angle : " + angle + "\n");
             // select different items based on angle moved
             // handle menu and submenu item selection
-            //if angle moved is negative
+            //if angle moved is positive i.e clockwise rotation
             if(angle > 0){
                 angleMoved++;
                 console.log("angleMoved : " + angleMoved + "\n");
@@ -151,7 +155,7 @@ class Ipod extends React.Component{
                     }
                 }
             }
-            //angle moved is negative
+            //angle moved is negative i.e anticlockwise rotation
             else{
                 angleMoved++;
                 console.log("angleMoved : " + angleMoved + "\n");
@@ -265,9 +269,11 @@ class Ipod extends React.Component{
         const {menu, submenu, songs, albums, games, settings, favourite, artist, bands} = this.state;
         // console.log("menu : " + menu + "\n");
         // console.log("submenu : " + submenu + "\n");
+        // do nothing if we are already on menu
         if(menu){
             return;
         }
+        // if we are on submenu
         else if(submenu && !menu){
             this.setState({
                 menu: !menu,
@@ -279,6 +285,7 @@ class Ipod extends React.Component{
             let imageUrl = "https://c4.wallpaperflare.com/wallpaper/738/62/544/naruto-chidori-naruto-naruto-uzumaki-rasengan-naruto-sasuke-uchiha-hd-wallpaper-preview.jpg";
             $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
         }
+        // if we are neither on menu or submenu
         else if(!menu && !submenu)
         {
             if(songs){
@@ -302,6 +309,7 @@ class Ipod extends React.Component{
         }
     }
 
+    // pauses the song if it is playing and plays if it is not playings
     handlePlayPauseClick = (props) =>{
         // toggle song play and pause
         const {play, favouriteAccessedOnce} = this.state;
