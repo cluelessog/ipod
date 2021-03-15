@@ -53,6 +53,7 @@ const Screen = (props) => {
                     (active === 'settings') ?
 
                     <div className = "setting-screen">
+                        <br />
                         iPod.js
                         <img className = "react-logo" src="logo512.png" />
                         Made with <span className="heart">❤</span> by Sourabh

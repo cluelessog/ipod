@@ -209,7 +209,7 @@ class Ipod extends React.Component{
             else if(albums){
                 let imageUrl = "https://media.giphy.com/media/ThuxekMi9kcAU4euK3/giphy.gif";
                 $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
-                $('.screen-container').css('background-size', '264px 170px');
+                $('.screen-container').css('background-size', '264px 185px');
                 this.setState({
                     menu: false,
                     submenu: false,
@@ -243,7 +243,7 @@ class Ipod extends React.Component{
                 });
             }
             else if(artist){
-                let imageUrl = "https://static.wikia.nocookie.net/taylor-swift/images/3/3f/The_Weeknd_1.jpg/revision/latest?cb=20190330062206";
+                let imageUrl = "https://static.wikia.nocookie.net/taylor-swift/images/3/3f/The_Weeknd_1.jpg";
                 $('.screen-container').css('background-image', 'url(' + imageUrl + ')');
                 $('.screen-container').css('background-position', 'relative');
                 this.setState({

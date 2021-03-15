@@ -7,6 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-y: hidden; 
   overflow-x: hidden; 
+  
 }
 
 code {
@@ -17,12 +18,13 @@ code {
 /* control wheel styling */
 .container{
   position: relative;
-  background-color: #dfdfd7;
   height: 471px;
   width: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: rgb(85 85 85) 0px 0px 2.4em inset;
+  background: linear-gradient(rgb(227, 227, 227) 0%, rgb(214, 214, 214) 100%);
   margin: auto;
   margin-top: 5%;
   border-radius: 25%;
@@ -43,7 +45,12 @@ code {
   width: 100px;
   border-radius: 50%;
   background-color: #dfdfd7;
+  box-shadow: rgb(191 191 191) 0px 1em 3em inset;
+  border: 1px solid rgb(185, 185, 185);
   margin: auto;
+}
+.inner-circle:active{
+  filter: brightness(0.9);
 }
 .next-btn{
   position: absolute;
@@ -73,12 +80,12 @@ code {
 /* screen css */
 .Screen{
   position: absolute;
-  top: 20%;
-  left: 7%;
+  top: 18%;
+  left: 6%;
   z-index: 2;
 }
 .screen-container{
-  height: 160px;
+  height: 175px;
   width: 260px;
   overflow: hidden;
   border : 2px solid black;
